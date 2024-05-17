@@ -30,12 +30,20 @@
 .celda{
     width: 100px;
     height: 100px;
-    background-color: rgb(255, 233, 233);
+    background-color: white;
+    text-align: center;
+    font-size: 55px;
     cursor: pointer;
 }
 .buton{
     text-align: center;
     margin-top: -15%;
+}
+
+#reiniciar{
+    background-color: plum;
+    border-color: plum;
+    padding: 10px;
 }
 
 ol{

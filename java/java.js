@@ -45,8 +45,9 @@ const winnir = [
 ];
 
 let simboloWn = document.getElementById("ganador")
-console.log(simboloWn);
-function ganador() {
+
+function ganador(){
+
     for (let index = 0; index < winnir.length; index++) {
 
         const [c1, c2, c3] = winnir[index] 
@@ -57,10 +58,11 @@ function ganador() {
 
            return true
         }
-
     }
     return false
 }
+
+let btnreiniciar = document.getElementById("reiniciar")
 
 
 

@@ -8,7 +8,10 @@
     align-items: center;
     height: 100vh;
 }
-
+body{
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
 .contenedor{
     display: flex;
     justify-content: center;
@@ -16,16 +19,14 @@
     margin-top: -20%;
     padding: 10px;
 }
-
 .game{
     display: grid;
     grid-template-columns: repeat(3, 100px);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     grid-template-rows: repeat(3, 100px);
-    background-color: rgb(70, 240, 223);
     border-radius: 12%;
     gap: 5px;
 }
-
 .celda{
     width: 100px;
     height: 100px;
@@ -40,12 +41,13 @@
 }
 
 #reiniciar{
-    background-color:rgb(70, 240, 223);
-    border-color: rgb(70, 240, 223);
+    background-color:black;
+    border-color: white;
     padding: 10px;
     border-radius: 20px;
     font-size: 15px;
-    background-color: rgb(70, 240, 223)
+    font-style: unset;
+    background-color: white;
 }
 
 ol{
@@ -59,7 +61,6 @@ ol{
     border-bottom-right-radius: 20px;
     padding: 20px;
 }
-
 .gato{
     width: 14%;
 }

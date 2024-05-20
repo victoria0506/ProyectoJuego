@@ -5,20 +5,18 @@
 let juego = document.getElementsByClassName("celda")
 
 let jugadorUno = true
-//console.log(juego);
+
 
 
 for (let index = 0; index < juego.length; index++) {
 
     juego[index].addEventListener("click", function(e){
 
-    //console.log(jugadorUno);
-    //console.log("diste click");
 
 ///////// validar si la celda esta vacia /////////
-    if (e.target.innerHTML == "") {
+    //console.log(ganador())
+    if (e.target.innerHTML == "" && !ganador() ) {
         if (jugadorUno){
-
             e.target.innerHTML = "✘" 
             jugadorUno = false 
     
@@ -26,10 +24,13 @@ for (let index = 0; index < juego.length; index++) {
             e.target.innerHTML = "o" 
             jugadorUno = true
         }
-        juego.disabled = true
+
+    }else{
+
     }
-    ganador()
+
     })
+
 }
 
 const winnir = [
@@ -42,22 +43,30 @@ const winnir = [
     [0,4,8],
     [2,4,6],
 ];
-//console.log(winnir);
 
+let simboloWn = document.getElementById("ganador")
+console.log(simboloWn);
 function ganador() {
     for (let index = 0; index < winnir.length; index++) {
-        //console.log(winnir[index])
 
         const [c1, c2, c3] = winnir[index] 
     
-        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML == juego[c3].innerHTML) {
+        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML == juego[c3].innerHTML){
 
-        return console.log("Has ganado");
+           simboloWn.innerHTML = juego[c1].innerHTML + " Ganador"
 
+           return true
         }
+
     }
-        return null
+    return false
 }
+
+
+
+
+
+
 
 
 

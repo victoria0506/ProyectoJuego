@@ -32,7 +32,6 @@ for (let index = 0; index < juego.length; index++) {
             jugadorUno = false 
     
         }else{
-            
             e.target.innerHTML = "o" 
             if (ganador()) {
                 let simboloWn = document.getElementById("ganador")
@@ -40,10 +39,11 @@ for (let index = 0; index < juego.length; index++) {
             }
             jugadorUno = true
 
-        }//if (empate()) {
-            //let simboloWn = document.getElementById("ganador")
-            //simboloWn.innerHTML =  " Empate"
-        //}
+        }
+        /*if (empate() && !ganador()) {
+            let simboloWn = document.getElementById("ganador")
+            simboloWn.innerHTML =  " Empate"
+        }*/
 
     }
 
@@ -81,35 +81,42 @@ function ganador(){
     return false
 }
 
+let array = []
+
 function compuJuega() {
+
+    for (let index = 0; index < juego.length; index++) {
+
+        if (juego == ""){
+
+            let compu = Math.floor(Math.random() * juego.length)
+
+            juego[compu].innerHTML = "o"
     
-    while (juego == "") {
-        
-        let compu = Math.floor(Math.random() * juego.length)
-        
+            if (ganador()) {
+                
+                let simboloWn = document.getElementByI("ganador")
+                simboloWn.innerHTML =  " o ganador"
+            }
+        }
 
-  
-
+        
     }
+    
+
 }
-
-
-
-
-
-
 
 
 /*
 function empate() {
-    for (let index = 0; index < winnir.length; index++) {
+    for (let index = 0; index < juego.length; index++) {
 
-        const [c1, c2, c3] = winnir[index] 
-
-        if (winnir[index] != juego[c1].innerHTML && juego[c2].innerHTML || juego[c3].innerHTML) {
-            console.log("empate");
+        if (juego[index] == "") {
+            return false
+            
         }
     }
+    return true
 }
 */
 

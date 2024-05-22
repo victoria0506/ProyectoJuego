@@ -9,8 +9,8 @@
     height: 100vh;
 }
 body{
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgb(251, 179, 210) 0%, rgb(206, 229, 255) 100%);
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgb(250, 161, 200) 0%, rgb(206, 229, 255) 100%);
 }
 .contenedor{
     display: flex;

@@ -12,41 +12,44 @@ for (let index = 0; index < juego.length; index++) {
     //evento para que cundo le den click se agrege una x || o
     juego[index].addEventListener("click", function(e){
 
-
-///////// validar si la celda esta vacia /////////
-    //console.log(ganador())
-
-//validacion para funcionar si la celda esta vacia
-    if (e.target.innerHTML == "" && !ganador()){
+        //validacion para funcionar si la celda esta vacia//
+        if (e.target.innerHTML == "" && !ganador()){
  
-        //validamos para que se agreguen las x y o
-        if (jugadorUno){
+           //validamos para que se agreguen las x y o
+            if (jugadorUno){
 
-            // metodo para que se agregue 
-            e.target.innerHTML = "✘"
+              // metodo para que se agregue 
+               e.target.innerHTML = "✘"
             
-            if (ganador()) {
-                let simboloWn = document.getElementById("ganador")
-                simboloWn.innerHTML =  " x ganador"
-            } 
-            jugadorUno = false 
-    
-        }else{
-            e.target.innerHTML = "o" 
-            if (ganador()) {
-                let simboloWn = document.getElementById("ganador")
-                simboloWn.innerHTML =  " o ganador"
+                if (ganador()) {
+
+                  let simboloWn = document.getElementById("ganador")
+                  simboloWn.innerHTML =  " x ganador"
+
+                } 
+
+                jugadorUno = false 
+
+            }else{
+              //juegaCompu()
+              //e.target.innerHTML = "O"
+
+                if (ganador()){
+                
+                  let simboloWn = document.getElementById("ganador")
+                  simboloWn.innerHTML =  " O ganador"
+
+                }
+                jugadorUno = true
+
+            }if(empate()){
+
+                if (empate() != ganador()) {
+                   let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML =  " Empate"
+                }
             }
-            jugadorUno = true
-
         }
-        /*if (empate() && !ganador()) {
-            let simboloWn = document.getElementById("ganador")
-            simboloWn.innerHTML =  " Empate"
-        }*/
-
-    }
-
     })
 }
 
@@ -81,44 +84,42 @@ function ganador(){
     return false
 }
 
-let array = []
 
-function compuJuega() {
+
+function juegaCompu() {
 
     for (let index = 0; index < juego.length; index++) {
 
-        if (juego == ""){
+        if (juego == "") {
 
             let compu = Math.floor(Math.random() * juego.length)
+            juego[compu].innerHTML = "O"
 
-            juego[compu].innerHTML = "o"
-    
-            if (ganador()) {
-                
-                let simboloWn = document.getElementByI("ganador")
-                simboloWn.innerHTML =  " o ganador"
-            }
+            setTimeout(() => {
+
+                juego[compu].innerHTML = "O"
+
+            }, 1000);
+            
         }
-
-        
     }
-    
-
 }
 
 
-/*
+
+
 function empate() {
     for (let index = 0; index < juego.length; index++) {
 
         if (juego[index] == "") {
+            
             return false
             
         }
     }
     return true
 }
-*/
+
 
 
 

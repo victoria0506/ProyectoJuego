@@ -1,6 +1,7 @@
 .ini{
     text-align: center;
     font-style: unset;
+    font-size: 20px;
 }
 .mayor{
     display: flex;
@@ -10,7 +11,12 @@
 }
 body{
     background: rgb(255, 255, 255);
-    background: radial-gradient(circle, rgb(250, 161, 200) 0%, rgb(206, 229, 255) 100%);
+    background: radial-gradient(circle, rgb(250, 161, 200) 0%, #b8b0ef  100%);
+}
+#jugador{
+    text-align: center;
+    font-size: 25px;
+    font-style: unset;
 }
 .contenedor{
     display: flex;
@@ -22,7 +28,7 @@ body{
 .game{
     display: grid;
     grid-template-columns: repeat(3, 100px);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgb(148,187,233,1) 100%);
+    background: radial-gradient(top, rgb(255, 196, 222) 0%, #c5bef2 100%);
     grid-template-rows: repeat(3, 100px);
     border-radius: 12%;
     gap: 5px;
@@ -34,6 +40,8 @@ body{
     text-align: center;
     font-size: 55px;
     cursor: pointer;
+    color: black;
+    opacity: 0.8;
 }
 .buton{
     text-align: center;
@@ -50,17 +58,6 @@ body{
     background-color: white;
 }
 
-ol{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-    list-style-type: none;
-    padding: 20px;
-    border: rgb(0, 0, 0) double;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 20px;
-}
 .gato{
     width: 14%;
 }

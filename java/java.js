@@ -1,52 +1,48 @@
 
-//Variable del las celdas de juego
+// Variable de las celdas de juego
 let juego = document.getElementsByClassName("celda")
 let jugador = document.getElementById("jugador")
 
-//variable con valor boolean para cambiar entre jugadores
+// Variable con valor boolean para cambiar entre jugadores
 let jugadorUno = true
 
-let jugadorActivo = true
+// Variable para mantener el estado del juego
+let juegoActivo = true
 
 for (let index = 0; index < juego.length; index++) {
-
+    
     juego[index].addEventListener("click", function () {
 
-        if (juego[index].innerHTML === "" && jugadorActivo && !empate()) {
+        if (juego[index].innerHTML === "" && juegoActivo && !empate()) {
 
             if (jugadorUno) {
 
-                juego[index].innerHTML = "✘";
+                juego[index].innerHTML = "✘"
 
                 if (ganador()) {
 
-                    let simboloWn = document.getElementById("ganador");
-
-                    simboloWn.innerHTML = "✘ ganaste";
-
-                    jugadorActivo = false;  
-
+                    let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML = "✘ ganaste"
+                    juegoActivo = false
+                    
                 } else if (empate()) {
 
-                    let simboloWn = document.getElementById("ganador");
-
-                    simboloWn.innerHTML = "Empate";
+                    let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML = "Empate"
 
                 } else {
 
-                    jugador.innerHTML = "O Turno";
+                    jugador.innerHTML = "O Turno"
+                    jugadorUno = false
+                    juegaCompu()
 
-                    jugadorUno = false;
-                    
-                    juegaCompu();
                 }
             }
         }
     });
 }
 
-
-// matriz con la maneras de ganar
+// Matriz con las maneras de ganar
 const winnir = [
     [0, 1, 2],
     [3, 4, 5],
@@ -56,73 +52,71 @@ const winnir = [
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-];
+]
 
-
-// funcion para validar las pocisiones que ganan
+// Función para validar las posiciones que ganan
 function ganador() {
 
-    // for para que recorra la matriz
     for (let index = 0; index < winnir.length; index++) {
 
-        //costante con las posiciones que va a ser igual a las 3 posiciones en cada array de la matriz
         const [c1, c2, c3] = winnir[index]
 
-        // validamos las casillas con las pocisiones
-        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML == juego[c3].innerHTML) {
-            // si se cumple returne verdadero
+        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML === juego[c3].innerHTML) {
+
             return true
         }
+
     }
-    // si no falso
+
     return false
 }
 
 
-function juegaCompu(juego) {
+function juegaCompu() {
 
     setTimeout(() => {
+
         for (let index = 0; index < 30; index++) {
 
-            let random = Math.floor(Math.random() * 9);
+            let random = Math.floor(Math.random() * 9)
 
-            if (juego[random].innerHTML === "" && jugadorActivo) {
+            if (juego[random].innerHTML === "" && juegoActivo) {
 
-                juego[random].innerHTML = "O";
+                juego[random].innerHTML = "O"
 
                 if (ganador()) {
 
-                    let simboloWn = document.getElementById("ganador");
-                    simboloWn.innerHTML = "O ganaste";
-                    jugadorActivo = false;  
+                    let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML = "O ganaste"
+                    juegoActivo = false 
 
                 } else if (empate()) {
 
-                    let simboloWn = document.getElementById("ganador");
-                    simboloWn.innerHTML = "Empate";
+                    let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML = "Empate"
 
                 } else {
 
-                    jugador.innerHTML = "✘ Turno";
-                    jugadorUno = true;
+                    jugador.innerHTML = "✘ Turno"
+                    jugadorUno = true
 
                 }
-                break;
+                break
             }
         }
-    }, 1000);
- 
+    }, 1000)
 }
+
 
 function empate() {
     for (let index = 0; index < juego.length; index++) {
 
-        if (juego[index] === "") {
+        if (juego[index].innerHTML === "") {
 
             return false
-
         }
     }
+
     return true
 }
 

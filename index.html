@@ -8,16 +8,17 @@
 </head>
 <body>
 
-
-    <br>
-
     <div class="ini">
-        <h1>Juego del gato</h1>
-        <div><img class="gato" src="img/gato2.webp" alt=""></div>
+        <h1>Tic Tac Toe</h1>
     </div>
 
-    <p id="jugador"></p>
+    <video autoplay muted loop class="videoFondo">
+        <source src="video/cherry-blossom-tree-moewalls-com.mp4" type="video/mp4">
+    </video>
 
+    <p id="turno"></p>
+
+    <br><br>
     <div class="mayor">
         <div class="contenedor">
             <div class="game">
@@ -34,23 +35,10 @@
         </div>
     </div>
 
-
     <div class="buton">
-
         <h2 id="ganador"></h2>
-
-        <button id="reiniciar">Reiniciar Juego</button>
-        
+        <button id="reiniciar" onclick= reiniciar()>Reiniciar Juego</button>
     </div>
-
-
-
-
-
-
-
-
-
 
 
 

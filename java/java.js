@@ -1,7 +1,7 @@
 
 // Variable de las celdas de juego
 let juego = document.getElementsByClassName("celda")
-let jugador = document.getElementById("jugador")
+let jugador = document.getElementById("turno")
 
 // Variable con valor boolean para cambiar entre jugadores
 let jugadorUno = true
@@ -144,7 +144,7 @@ function empate() {
     for (let index = 0; index < juego.length; index++) {
           
         //validamos si las casillas de index son == a vacio retornamos un falso
-        if (juego[index].innerHTML === "") {
+        if (juego[index].innerHTML == "") {
 
             return false
         }
@@ -153,7 +153,20 @@ function empate() {
     return true
 }
 
+//
+function reiniciar() {
 
+    for (let index = 0; index < juego.length; index++) {
+
+        jugador.innerHTML = ""
+
+        let simboloWn = document.getElementById("ganador")
+        simboloWn.innerHTML = ""
+
+        juego[index].innerHTML = ""
+
+    }
+}
 
 
 

@@ -154,6 +154,7 @@ function empate() {
 }
 
 //
+/*
 function reiniciar() {
 
     for (let index = 0; index < juego.length; index++) {
@@ -167,7 +168,12 @@ function reiniciar() {
 
     }
 }
+*/
+function reiniciar() {
 
+    location.reload()
+    
+}
 
 
 

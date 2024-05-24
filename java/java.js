@@ -153,7 +153,7 @@ function empate() {
     return true
 }
 
-//
+//funcion para eliminar lo agregado
 /*
 function reiniciar() {
 
@@ -169,8 +169,10 @@ function reiniciar() {
     }
 }
 */
-function reiniciar() {
 
+//funcion para refrescar la pagina 
+function reiniciar() {
+    //metodo de refrescar la pagina
     location.reload()
     
 }

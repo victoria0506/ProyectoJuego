@@ -1,52 +1,62 @@
 
-//Variable del las celdas de juego
+// Variable de las celdas de juego
 let juego = document.getElementsByClassName("celda")
 let jugador = document.getElementById("jugador")
 
-//variable con valor boolean para cambiar entre jugadores
+// Variable con valor boolean para cambiar entre jugadores
 let jugadorUno = true
 
+// Variable para mantener el estado del juego
 let jugadorActivo = true
 
+
+//con un for vamos a recorrer todas las casillas
 for (let index = 0; index < juego.length; index++) {
-
+    
+    //a las casillas le vamos a agregar un evento click 
     juego[index].addEventListener("click", function () {
-
+    
+        //validamos de las casillas recorridas en el FOR sean estrictamente igual a vacio Y el juego este activo Y exista envates
         if (juego[index].innerHTML === "" && jugadorActivo && !empate()) {
 
+            //validamos que seaa el juagador
             if (jugadorUno) {
 
-                juego[index].innerHTML = "✘";
+                //si lo anterior se cumple, imprima X
+                juego[index].innerHTML = "✘"
 
+                //si X gana imprime que gano
                 if (ganador()) {
 
-                    let simboloWn = document.getElementById("ganador");
-
-                    simboloWn.innerHTML = "✘ ganaste";
-
-                    jugadorActivo = false;  
-
-                } else if (empate()) {
-
-                    let simboloWn = document.getElementById("ganador");
-
-                    simboloWn.innerHTML = "Empate";
-
-                } else {
-
-                    jugador.innerHTML = "O Turno";
-
-                    jugadorUno = false;
+                    //variables del h2 
+                    let simboloWn = document.getElementById("ganador")
+                    //mensaje que gano
+                    simboloWn.innerHTML = "✘ ganaste"
+                    //al haber un ganador el juego se detiene
+                    jugadorActivo = false
                     
-                    juegaCompu();
+                    //validamos el empate
+                }if(empate()) {
+
+                    //de existir empate imprimimos el mensaje de mepate
+                    let simboloWn = document.getElementById("ganador")
+                    simboloWn.innerHTML = "Empate"
+
+                }else{
+
+                    // imprimimos los turnos correspodiente al jugador en este caso la X
+                    jugador.innerHTML = "O Turno"
+                    jugadorUno = false
+                    //llamamos a la funcion de la computadora para que al dar click, y cumplir con el setTimeout dado, se lleve a cabo la funcion
+                    juegaCompu()
+
                 }
             }
         }
     });
 }
 
-
-// matriz con la maneras de ganar
+// Matriz con las maneras de ganar
 const winnir = [
     [0, 1, 2],
     [3, 4, 5],
@@ -56,73 +66,90 @@ const winnir = [
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-];
+]
 
-
-// funcion para validar las pocisiones que ganan
+// Función para validar las posiciones que ganan
 function ganador() {
-
-    // for para que recorra la matriz
+     // recorremos la matriz con un for para 
     for (let index = 0; index < winnir.length; index++) {
 
-        //costante con las posiciones que va a ser igual a las 3 posiciones en cada array de la matriz
+         // estso va a ser una constente con las tres formas de ganar que va ser igual a la matriz recorrida en el for
         const [c1, c2, c3] = winnir[index]
 
-        // validamos las casillas con las pocisiones
-        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML == juego[c3].innerHTML) {
-            // si se cumple returne verdadero
+            //validamos las posciciones
+        if (juego[c1].innerHTML && juego[c1].innerHTML === juego[c2].innerHTML && juego[c1].innerHTML === juego[c3].innerHTML) {
+            //si es verdadero retorna un verdaadero
             return true
         }
+
     }
-    // si no falso
+    //si no un falso
     return false
 }
 
+//Funcion para que la computadora juegue
+function juegaCompu() {
 
-function juegaCompu(juego) {
-
+    //Esperar para que la computadora responda
     setTimeout(() => {
+
+        //For para recorrer 
         for (let index = 0; index < 30; index++) {
 
-            let random = Math.floor(Math.random() * 9);
+            ////variable para que elija un espacio aleatoria
+            let random = Math.floor(Math.random() * 9)
 
+            ///validacion para que si la casilla esta vacia Y el juego sigue activo
             if (juego[random].innerHTML === "" && jugadorActivo) {
 
-                juego[random].innerHTML = "O";
+                //imprima la O de manera aleatoria
+                juego[random].innerHTML = "O"
 
+                //validacion de para ver si O gano
                 if (ganador()) {
 
-                    let simboloWn = document.getElementById("ganador");
-                    simboloWn.innerHTML = "O ganaste";
-                    jugadorActivo = false;  
+                    //varriable de el h2 donde se imprime el resultado
+                    let simboloWn = document.getElementById("ganador")
+                    //cuando gana se envia este mensaje
+                    simboloWn.innerHTML = "O ganaste"
+                    //se detine el juego
+                    jugadorActivo = false 
 
-                } else if (empate()) {
 
-                    let simboloWn = document.getElementById("ganador");
-                    simboloWn.innerHTML = "Empate";
+                    //validacion para los empates
+                }if(empate()) {
 
-                } else {
+                    //variable de el h2 para imprimir el resultado
+                    let simboloWn = document.getElementById("ganador")
+                    //si empata imprimi esto
+                    simboloWn.innerHTML = "Empate"
 
-                    jugador.innerHTML = "✘ Turno";
-                    jugadorUno = true;
+                }else{
+                     //imprimir los turnos, cuando O juegue sera el turno de X
+                    jugador.innerHTML = "✘ Turno"
+                    jugadorUno = true
 
                 }
-                break;
+                //se detiene el ciclo
+                break
             }
         }
-    }, 1000);
- 
+        //tiempo de respuesta de la O
+    }, 1000)
 }
 
+//funcion de empate
 function empate() {
+    //recorremos con un FOR las casillas
     for (let index = 0; index < juego.length; index++) {
-
-        if (juego[index] === "") {
+          
+        //validamos si las casillas de index son == a vacio retornamos un falso
+        if (juego[index].innerHTML === "") {
 
             return false
-
         }
     }
+ //si no un verdadwero
     return true
 }
 

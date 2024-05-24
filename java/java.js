@@ -6,37 +6,43 @@ let jugador = document.getElementById("jugador")
 //variable con valor boolean para cambiar entre jugadores
 let jugadorUno = true
 
+let jugadorActivo = true
+
 for (let index = 0; index < juego.length; index++) {
 
     juego[index].addEventListener("click", function () {
 
-        if (juego[index].innerHTML === "" && !ganador()) {
+        if (juego[index].innerHTML === "" && jugadorActivo && !empate()) {
 
-            juego[index].innerHTML = "✘"
-            jugador.innerHTML = " X Turno"
-                
-            if (ganador()) {
-        
-                let simboloWn = document.getElementById("ganador")
-                simboloWn.innerHTML = " X ganaste"
+            if (jugadorUno) {
+
+                juego[index].innerHTML = "✘";
+
+                if (ganador()) {
+
+                    let simboloWn = document.getElementById("ganador");
+
+                    simboloWn.innerHTML = "✘ ganaste";
+
+                    jugadorActivo = false;  
+
+                } else if (empate()) {
+
+                    let simboloWn = document.getElementById("ganador");
+
+                    simboloWn.innerHTML = "Empate";
+
+                } else {
+
+                    jugador.innerHTML = "O Turno";
+
+                    jugadorUno = false;
+                    
+                    juegaCompu();
+                }
             }
-            jugadorUno = false
-            
-            juegaCompu(juego)
-
-            if (ganador()) {
-
-                let simboloWn = document.getElementById("ganador")
-                simboloWn.textContent = "O ganaste"
-
-            }
-
-            jugador.innerHTML = "O Turno"
-            
-            jugadorUno = true
-           
         }
-    })
+    });
 }
 
 
@@ -51,7 +57,7 @@ const winnir = [
     [0, 4, 8],
     [2, 4, 6],
 ];
-console.log(winnir);
+
 
 // funcion para validar las pocisiones que ganan
 function ganador() {
@@ -75,34 +81,43 @@ function ganador() {
 
 function juegaCompu(juego) {
 
-    for (let index = 0; index < 30; index++) {
+    setTimeout(() => {
+        for (let index = 0; index < 30; index++) {
 
-        let ramdom = Math.floor(Math.random()*9)     
+            let random = Math.floor(Math.random() * 9);
 
-        //console.log(ramdom)
-    
-        let convert = parseInt(ramdom)
-           
-        if (juego[convert].textContent === "") {
+            if (juego[random].innerHTML === "" && jugadorActivo) {
 
-            setTimeout(() => {
+                juego[random].innerHTML = "O";
 
-                juego[convert].innerHTML = "O"
+                if (ganador()) {
 
-            }, 1000);
+                    let simboloWn = document.getElementById("ganador");
+                    simboloWn.innerHTML = "O ganaste";
+                    jugadorActivo = false;  
 
-            break
+                } else if (empate()) {
+
+                    let simboloWn = document.getElementById("ganador");
+                    simboloWn.innerHTML = "Empate";
+
+                } else {
+
+                    jugador.innerHTML = "✘ Turno";
+                    jugadorUno = true;
+
+                }
+                break;
+            }
         }
-            
-    }
-         
+    }, 1000);
+ 
 }
-
 
 function empate() {
     for (let index = 0; index < juego.length; index++) {
 
-        if (juego[index] == "") {
+        if (juego[index] === "") {
 
             return false
 
@@ -110,14 +125,7 @@ function empate() {
     }
     return true
 }
-/*
-else{(empate() != ganador())
 
-    let simboloWn = document.getElementById("ganador")
-    simboloWn.innerHTML =  " Empate"
-
-}
-*/
 
 
 
